@@ -1,11 +1,16 @@
 package tn.esprit.Services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.Repository.SponsorRepository;
 import tn.esprit.entities.Sponsor;
 
 import java.util.List;
 
+@Service
 public class SponsorService implements ISponsorService{
+
+    @Autowired
     SponsorRepository sp;
 
     @Override
