@@ -2,13 +2,15 @@ package tn.esprit.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table
+@Table(name="DetailChampionnat")
 public class DetailChampionnat {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDetailChampionnat;
-
-    private String code;
+    private String code; // PK
     private String description;
+
+    @OneToMany(mappedBy="categorie")
+    private List<Championnat> championnats;
 }

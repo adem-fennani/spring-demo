@@ -3,12 +3,20 @@ package tn.esprit.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name="Position")
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idPosition;
+    private Long idPosition;
 
-    private int classement;
-    private int nbPoints;
+    private Integer classement;
+    private Integer nbPoints;
+
+    @ManyToOne
+    @JoinColumn(name="pilote_id")
+    private Pilote pilote;
+
+    @ManyToOne
+    @JoinColumn(name="course_id")
+    private Course course;
 }
