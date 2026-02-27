@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.Repository.SponsorRepository;
 import tn.esprit.entities.Sponsor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,16 +16,25 @@ public class SponsorService implements ISponsorService{
 
     @Override
     public Sponsor ajouterSponsor(Sponsor sponsor) {
+        sponsor.setDateCreation(LocalDate.now());
+        sponsor.setArchived(false);
+        sponsor.setBloquerContrat(false);
         return sp.save(sponsor);
     }
 
     @Override
     public List<Sponsor> ajouterSponsors(List<Sponsor> sponsors) {
+        for (Sponsor sponsor : sponsors) {
+            sponsor.setDateCreation(LocalDate.now());
+            sponsor.setArchived(false);
+            sponsor.setBloquerContrat(false);
+        }
         return sp.saveAll(sponsors);
     }
 
     @Override
     public Sponsor modifierSponsor(Sponsor sponsor) {
+        sponsor.setDateDerniereModification(LocalDate.now());
         return sp.save(sponsor);
     }
 
